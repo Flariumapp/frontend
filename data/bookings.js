@@ -1,0 +1,48 @@
+import { CompanyHash } from '../utility/company-map';
+
+export const flightBooks = [
+    {
+        id: 'b1',
+        logo: CompanyHash['spicejet'].logo,
+        company: CompanyHash['spicejet'].brand,
+        origin: 'delhi',
+        destination: 'mumbai',
+        date: '11 september 2021',
+        passenger: 1,
+        price: 3250,
+        status: 'Booked',
+    },
+    {
+        id: 'b2',
+        logo: CompanyHash['indigo'].logo,
+        company: CompanyHash['indigo'].brand,
+        origin: 'delhi',
+        destination: 'hyderabad',
+        date: '11 september 2021',
+        passenger: 1,
+        price: 3250,
+        status: 'Cancelled',
+    },
+    {
+        id: 'b3',
+        logo: CompanyHash['airasia'].logo,
+        company: CompanyHash['airasia'].brand,
+        origin: 'delhi',
+        destination: 'thailand',
+        date: '11 september 2021',
+        passenger: 1,
+        price: 3250,
+        status: 'Terminated',
+    },
+    {
+        id: 'b1',
+        logo: CompanyHash['spicejet'].logo,
+        company: CompanyHash['spicejet'].brand,
+        origin: 'delhi',
+        destination: 'hyderabad',
+        date: '11 september 2021',
+        passenger: 1,
+        price: 3250,
+        status: 'Terminated',
+    },  
+];

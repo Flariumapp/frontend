@@ -1,0 +1,55 @@
+import { CompanyHash } from '../utility/company-map';
+import { FlightStatusHash } from '../utility/flight-status-map';
+
+export const flights = [
+    {
+        id: 'A345F',
+        brand: CompanyHash['spicejet'],
+        origin: 'Delhi',
+        destination: 'Mumbai',
+        time: 1500,
+        gateNo: "1",
+        terminal: "T3",
+        status: FlightStatusHash['flying'],
+    },
+    {
+        id: 'BD453',
+        brand: CompanyHash['indigo'],
+        origin: 'Delhi',
+        destination: 'Hyderabad',
+        time: 1500,
+        gateNo: "1",
+        terminal: "T3",
+        status: FlightStatusHash['flying'],
+    },
+    {
+        id: 'AB345',
+        brand: CompanyHash['jetairways'],
+        origin: 'Delhi',
+        destination: 'Mumbai',
+        time: 1500,
+        gateNo: "1",
+        terminal: "T3",
+        status: FlightStatusHash['scheduled'],
+    },
+    {
+        id: 'AD8R4',
+        brand: CompanyHash['spicejet'],
+        origin: 'Bangalore',
+        destination: 'Delhi',
+        time: 1500,
+        gateNo: "1",
+        terminal: "T3",
+        status: FlightStatusHash['scheduled'],
+    },
+    {
+        id: 'C564E',
+        brand: CompanyHash['vistara'],
+        origin: 'Thailand',
+        destination: 'Delhi',
+        time: 1500,
+        gateNo: "1",
+        terminal: "T3",
+        status: FlightStatusHash['scheduled'],
+    },
+];
