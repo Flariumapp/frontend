@@ -16,7 +16,7 @@ const Navigator = ({ dark }) => {
         {
             id: 'nav3',
             name: 'Food & Resturants',
-            path: '/food',
+            path: '/resturant',
         },
         {
             id: 'nav4',

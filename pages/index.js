@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from 'react';
-import { Text, Input, Button, Card } from '../UI';
+import { Text, Input, Button } from '../UI';
 import { Container, Section, InputSection, FlightBookContainer, FacilityContainer, FacilityRow } from '../styles';
 import Facility from '../components/facility';
 import FlightBook from '../components/flight-book';
@@ -85,7 +85,7 @@ const HomePage = () => {
                 {
                     airportFacilities.map(f => {
                       return (
-                          <Fragment>
+                          <Fragment key={f.id}>
                             <Facility
                               key={f.id}
                               icon={f.icon}
@@ -105,7 +105,7 @@ const HomePage = () => {
                 {
                     boardingFacilities.map(f => {
                         return (
-                          <Fragment>
+                          <Fragment key={f.id}>
                             <Facility
                               key={f.id}
                               icon={f.icon}
