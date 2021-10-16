@@ -35,7 +35,7 @@ export const flightBooks = [
         status: 'Terminated',
     },
     {
-        id: 'b1',
+        id: 'b4',
         logo: CompanyHash['spicejet'].logo,
         company: CompanyHash['spicejet'].brand,
         origin: 'delhi',

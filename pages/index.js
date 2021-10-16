@@ -5,6 +5,9 @@ import Facility from '../components/facility';
 import FlightBook from '../components/flight-book';
 import { airportFacilities, boardingFacilities } from '../data/facilities';
 import { flightBooks } from '../data/bookings';
+import buildClient from './api/build-client';
+import { getSession } from 'next-auth/client';
+import headerConfig from './api/header-config';
 
 const HomePage = () => {
   const [from, setFrom] = useState('');
@@ -125,12 +128,32 @@ const HomePage = () => {
   );
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
+  const session = await getSession({ req: context.req });
+
+  // console.log('jwt', session.jwt);
+  // console.log('current user', session.currentUser);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/guest',
+        permanent: false,
+      },
+    }
+  }
+
+  const { data } = await buildClient(context).get('flight', headerConfig(session.jwt));
+  const { flights } = data;
+
+  console.log('flights', flights);
+
   return {
     props: {
-        
-    },
+      session,
+    }
   }
 }
+
 
 export default HomePage;

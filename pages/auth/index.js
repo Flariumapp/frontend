@@ -1,32 +1,82 @@
-import { Fragment, useState } from 'react';
-import { Container, Display, Photo, Section, Switch } from "../../styles/auth";
+import { Fragment, useEffect, useState } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { Container, Display, InputContainer, InputSubContainer, Section, Switch } from "../../styles/auth";
 import { Button, Text, Input } from '../../UI';
 import theme from '../../styles/theme';
+import { useSelector, useDispatch } from 'react-redux';
+import { errConfig } from '../../utility/error-config';
+import { login, signup } from '../../store/actions';
+import { message } from 'antd';
+import { getSession, signIn } from 'next-auth/client';
 
 const AuthPage = () => {
+    const dispatch = useDispatch();
+    const router = useRouter();
+
     const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
+
+    // useEffect(() => {
+    //     getSession().then(session => {
+    //         if (session) {
+    //             setIsLoading(false);
+    //             router.push('/');
+    //         } else {
+    //             setIsLoading(false);
+    //         }
+    //     });
+    // }, []);
 
     const toggleMode = () => {
         setIsLogin(prevState => !prevState);
     }
 
-    const login = async () => {
-
+    const loginHandler = async () => {
+        try {
+            const result = await signIn('credentials', { redirect: false, email, password });
+            if (result.error) {
+                throw new Error(result.error);
+            }
+            // await dispatch(login({ email, password }));
+            // await axios.post('/api/auth/login', { email, password });
+            setIsLoading(false);
+            router.push('/');
+        } catch (err) {
+            setIsLoading(false);
+            const errMsg = errConfig(err, 'Login Failed!');
+            message.error({
+                content: errMsg
+            });
+        }
     }
 
-    const signup = async () => {
-
+    const signupHandler = async () => {
+        try {
+            await dispatch(signup({ email, firstName, lastName, password }));
+            setIsLoading(false);
+            setIsLogin(true);
+        } catch (err) {
+            setIsLoading(false);
+            const errMsg = errConfig(err, 'Signup Failed!');
+            message.error({
+                content: errMsg
+            });
+        }
     }
 
-    const submit = async () => {
+    const submitHandler = async () => {
+        setIsLoading(true);
         if (isLogin) {
-            await login();
+            await loginHandler();
         } else {
-            await signup();
+            await signupHandler();
         }
     }
 
@@ -48,6 +98,37 @@ const AuthPage = () => {
                     labelColor={'#fff'}
                 />
                 <div style={{ height: 20 }} />
+                {
+                    !isLogin &&
+                    <Fragment>
+                        <InputContainer>
+                            <InputSubContainer>
+                                <Input
+                                    value={firstName}
+                                    setValue={setFirstName}
+                                    label={'First Name'} 
+                                    placeholder={'Alex'}
+                                    underlined
+                                    color={'#f0f0f0'}
+                                    labelColor={'#fff'}
+                                />
+                            </InputSubContainer>
+                            <div style={{ width: 20 }} />
+                            <InputSubContainer>
+                                <Input
+                                    value={lastName}
+                                    setValue={setLastName}
+                                    label={'Last Name'} 
+                                    placeholder={'Murphy'}
+                                    underlined
+                                    color={'#f0f0f0'}
+                                    labelColor={'#fff'}
+                                />
+                            </InputSubContainer>
+                        </InputContainer>
+                        <div style={{ height: 20 }} />
+                    </Fragment>
+                }
                 <Input
                     value={password}
                     setValue={setPassword}
@@ -56,6 +137,7 @@ const AuthPage = () => {
                     underlined
                     color={'#f0f0f0'}
                     labelColor={'#fff'}
+                    type={'password'}
                 />
                 {
                     !isLogin &&
@@ -69,11 +151,12 @@ const AuthPage = () => {
                             underlined
                             color={'#f0f0f0'}
                             labelColor={'#fff'}
+                            type={'password'}
                         />
                     </Fragment>
                 }
                 <div style={{ flex: 1 }} />
-                <Button material block onPress={submit}>
+                <Button material block loading={isLoading} onPress={submitHandler}>
                     {isLogin ? 'Login' : 'Signup'}
                 </Button>
                 <Switch>

@@ -23,7 +23,7 @@ export const ButtonView = styled.button`
 export const MaterialButtonView = styled.button`
     cursor: pointer;
     padding: 22px;
-    height: ${ (height) => height ? height + 'px' : '100%' };
+    /* height: ${ (height) => height ? height + 'px' : '100%' }; */
     width: ${ ({ block, width }) => block ? '100%' : (width ? width + 'px' : '100%') };
     font-size: 18px;
     border-radius: 3px;

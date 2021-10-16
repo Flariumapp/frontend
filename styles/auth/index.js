@@ -19,6 +19,18 @@ export const Section = styled.div`
     padding: 80px;
 `;
 
+export const InputContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+    width: 100%;
+`;
+
+export const InputSubContainer = styled.div`
+    flex: 1;
+`;
+
 export const Switch = styled.div`
     display: flex;
     padding: 20px 0px;

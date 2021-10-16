@@ -1,5 +1,6 @@
 import { Button as Btn } from 'antd';
 import { ButtonView, MaterialButtonView } from './styles';
+import Loader from 'react-loader-spinner';
 
 const Button = ({ children, glass = false, material = false, height, width, size, type = 'primary', block = false , loading = false, disabled = false, onPress }) => {
     if (glass) {
@@ -13,7 +14,7 @@ const Button = ({ children, glass = false, material = false, height, width, size
     if (material) {
         return (
             <MaterialButtonView block={block} onClick={onPress}>
-                {children}
+                {loading ? <Loader type="Oval" color={"#fff"} radius={5} height={20} /> : children}
             </MaterialButtonView>
         );
     }

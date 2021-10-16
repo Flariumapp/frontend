@@ -1,0 +1,17 @@
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_LOGOUT = 'AUTH_LOGOUT';
+
+export const SET_USERS = 'SET_USERS';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const USER_SUCCESS = 'USER_SUCCESS';
+
+export const SET_FLIGHTS = 'SET_FLIGHTS';
+export const FLIGHT_SUCCESS = 'FLIGHT_SUCCESS';
+
+export const GALLERY_SUCCESS = 'GALLERY_SUCCESS';
+
+export const SET_LOCATION = 'SET_LOCATION';
+export const LOCATION_SUCCESS = 'LOCATION_SUCCESS';
+
+export const SET_COMPANY = 'SET_COMPANY';
+export const COMPANY_SUCCESS = 'COMPANY_SUCCESS';

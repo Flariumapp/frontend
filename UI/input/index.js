@@ -1,11 +1,11 @@
 import { Input as Ipt } from 'antd';
 import { Container, Label, TextContainer, UnderlinedContainer, TextInput } from './styles';
 
-const Input = ({ glass = false, underlined = false, value, setValue, color, placeholder, label, labelColor, width, height, size, prefix }) => {
+const Input = ({ glass = false, underlined = false, value, setValue, color, placeholder, label, labelColor, width, height, size, prefix, type = 'text' }) => {
 
     if (glass) {
         return (
-            <Container>
+            <Container width={width}>
                 <TextContainer width={width} height={height}>
                     <Label labelColor={labelColor}>{label}</Label>
                     <TextInput
@@ -13,6 +13,7 @@ const Input = ({ glass = false, underlined = false, value, setValue, color, plac
                         color={color}
                         placeholder={placeholder}
                         onChange={e => setValue(e.target.value)}
+                        type={type}
                     />
                 </TextContainer>
             </Container>
@@ -21,7 +22,7 @@ const Input = ({ glass = false, underlined = false, value, setValue, color, plac
 
     if (underlined) {
         return (
-            <Container>
+            <Container width={width}>
                 <UnderlinedContainer>
                     <Label labelColor={labelColor}>{label}</Label>
                     <div style={{ height: 8 }} />
@@ -30,6 +31,8 @@ const Input = ({ glass = false, underlined = false, value, setValue, color, plac
                         color={color}
                         placeholder={placeholder}
                         onChange={e => setValue(e.target.value)}
+                        type={type}
+                        autoComplete="one-time-code"
                     />
                 </UnderlinedContainer>
             </Container>
@@ -43,6 +46,7 @@ const Input = ({ glass = false, underlined = false, value, setValue, color, plac
             size={size}
             value={value}
             onChange={e => setValue(e.target.value)}
+            type={type}
         />
     );
 }

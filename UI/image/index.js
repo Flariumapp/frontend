@@ -1,12 +1,12 @@
 import Img from 'next/image';
 
-const Image = ({ src, alt, height, weight }) => {
+const Image = ({ src, alt, height, width }) => {
     return (
         <Img
             src={src}
             alt={alt}
             height={height}
-            weight={weight}
+            width={width}
         />
     );
 }
