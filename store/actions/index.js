@@ -23,14 +23,19 @@ export {
     fetchCompanies,
     addCompany,
     removeCompany,
-    updateCompany
+    updateCompany,
+    addCompanyGallery,
+    resetCompanyGallery,
 } from './company';
 
 export {
     fetchLocations,
     addLocation,
     removeLocation,
-    updateLocation
+    updateLocation,
+    addLocationGallery,
+    removeLocationGallery,
+    resetLocationGallery,
 } from './location';
 
 export {

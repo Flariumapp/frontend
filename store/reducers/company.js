@@ -1,7 +1,8 @@
-import { SET_COMPANY, COMPANY_SUCCESS } from '../action-types';
+import { SET_COMPANY, COMPANY_SUCCESS, SET_COMPANY_GALLERY, RESET_COMPANY_GALLERY } from '../action-types';
 
 const initialState = {
-    companies: []
+    companies: [],
+    gallery: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,16 @@ const reducer = (state = initialState, action) => {
             }
         case COMPANY_SUCCESS:
             return state;
+        case SET_COMPANY_GALLERY:
+            return {
+                ...state,
+                gallery: action.galleryItem,
+            }
+        case RESET_COMPANY_GALLERY:
+            return {
+                ...state,
+                gallery: null,
+            }
         default:
             return state;
     }

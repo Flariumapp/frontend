@@ -2,7 +2,7 @@ import { Button as Btn } from 'antd';
 import { ButtonView, MaterialButtonView } from './styles';
 import Loader from 'react-loader-spinner';
 
-const Button = ({ children, glass = false, material = false, height, width, size, type = 'primary', block = false , loading = false, disabled = false, onPress }) => {
+const Button = ({ children, glass = false, material = false, height, width, size, type = 'primary', block = false , loading = false, disabled = false, onPress, htmlType = 'button' }) => {
     if (glass) {
         return (
             <ButtonView height={height} width={width} onClick={onPress}>
@@ -27,6 +27,7 @@ const Button = ({ children, glass = false, material = false, height, width, size
             loading={loading}
             disabled={disabled}
             onClick={onPress}
+            htmlType={htmlType}
         >{children}</Btn>
     );
 }

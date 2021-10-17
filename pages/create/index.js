@@ -33,7 +33,15 @@ const CreatePage = ({ session }) => {
 export const getServerSideProps = async (context) => {
     const session = await getSession({ req: context.req });
 
-    if (!session || !session.currentUser || !session.currentUser.isAdmin) {
+    if (!session || !session.currentUser) {
+        return {
+            redirect: {
+                destination: '/guest',
+            }
+        };
+    }
+
+    if (!session.currentUser.isAdmin) {
         return {
             redirect: {
                 destination: '/',
