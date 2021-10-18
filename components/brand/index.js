@@ -3,13 +3,13 @@ import { appName } from '../../constants/app-config';
 import { FaPlaneDeparture } from 'react-icons/fa';
 import theme from '../../styles/theme';
 
-const Brand = ({ dark }) => {
+const Brand = ({ dark, size = 23, onPress }) => {
     return (
-        <Container>
+        <Container onClick={onPress}>
             <BrandLogo>
-                <FaPlaneDeparture size={23} color={theme.primary} />
+                <FaPlaneDeparture size={size} color={theme.primary} />
             </BrandLogo>
-            <BrandText dark={dark}>
+            <BrandText size={size} dark={dark}>
                 {appName}
             </BrandText>
         </Container>

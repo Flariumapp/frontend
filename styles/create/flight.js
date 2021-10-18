@@ -30,4 +30,15 @@ export const Display = styled.div`
     overflow: hidden;
 `;
 
-export const InputContainer = styled.div``;
+export const InputContainer = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const InputRow = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;

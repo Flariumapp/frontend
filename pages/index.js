@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Text, Input, Button } from '../UI';
-import { Container, Section, InputSection, FlightBookContainer, FacilityContainer, FacilityRow } from '../styles';
+import { Container, Wrapper, Section, InputSection, AppLegendContainer, AppLegendLarge, AppLegendMedium, FlightBookContainer, FacilityContainer, FacilityRow } from '../styles';
 import Facility from '../components/facility';
 import FlightBook from '../components/flight-book';
 import { airportFacilities, boardingFacilities } from '../data/facilities';
@@ -16,47 +16,54 @@ const HomePage = () => {
 
   return (
     <Container>
-      <Text type='super-heading' color='#fff'>
-        Building Your
-      </Text>
-      <Text type='super-heading' color='#fff' size={80}>
-        Airport Experience
-      </Text>
-      <Section>
-        <InputSection>
-          <Input
-            label={'From'}
-            placeholder={'Starting Point'}
-            glass
-            value={from}
-            setValue={setFrom}
-            width={300}
-          />
-          <div style={{ width: 10 }} />
-          <Input
-            label={'To'}
-            placeholder={'Destination Point'}
-            glass
-            value={to}
-            setValue={setTo}
-            width={300}
-          />
-          <div style={{ width: 10 }} />
-          <Input
-            label={'Date'}
-            placeholder={'Travel Date'}
-            glass
-            value={date}
-            setValue={setDate}
-            width={200}
-          />
-          <div style={{ width: 10 }} />
-          <Button glass>
-            Go
-          </Button>
-        </InputSection>
-      </Section>
-      <Section>
+      <Wrapper>
+        <AppLegendContainer>
+          <AppLegendMedium>
+            WHERE
+          </AppLegendMedium>
+          <AppLegendMedium>
+            DO YOU WANT TO
+          </AppLegendMedium>
+          <AppLegendLarge>
+            EXPLORE
+          </AppLegendLarge>
+        </AppLegendContainer>
+        <Section>
+          <InputSection>
+            <Input
+              label={'Origin'}
+              placeholder={'Origin Point'}
+              glass
+              value={from}
+              setValue={setFrom}
+              width={300}
+            />
+            <div style={{ width: 10 }} />
+            <Input
+              label={'Destination'}
+              placeholder={'Destination Point'}
+              glass
+              value={to}
+              setValue={setTo}
+              width={300}
+            />
+            <div style={{ width: 10 }} />
+            <Input
+              label={'Date'}
+              placeholder={'Travel Date'}
+              glass
+              value={date}
+              setValue={setDate}
+              width={200}
+            />
+            <div style={{ width: 10 }} />
+            <Button glass>
+              Go
+            </Button>
+          </InputSection>
+        </Section>
+      </Wrapper>
+      {/* <Section>
         <FlightBookContainer>
           <Text type="legend" color="#fff">Your recent flight bookings</Text>
           {
@@ -79,8 +86,8 @@ const HomePage = () => {
           }
         </FlightBookContainer>
         <div style={{ height: 30 }} />
-      </Section>
-      <Section>
+      </Section> */}
+      {/* <Section>
         <FacilityContainer>
             <Text type="legend" color="#fff">Airport Facilities</Text>
             <div style={{ height: 20 }} />
@@ -122,7 +129,7 @@ const HomePage = () => {
                 }
             </FacilityRow>
         </FacilityContainer>
-      </Section>
+      </Section> */}
       <div style={{ height: 100 }} />
     </Container>
   );
@@ -143,10 +150,10 @@ export const getServerSideProps = async (context) => {
     }
   }
 
-  const { data } = await buildClient(context).get('flight', headerConfig(session.jwt));
-  const { flights } = data;
+  // const { data } = await buildClient(context).get('flight', headerConfig(session.jwt));
+  // const { flights } = data;
 
-  console.log('flights', flights);
+  // console.log('flights', flights);
 
   return {
     props: {

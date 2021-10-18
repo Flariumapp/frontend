@@ -4,6 +4,7 @@ const theme = {
     light: '#FFFFFF',
     secondary: '#c9c9c9',
     darkish: '#434343',
+    greyish: '#dedede',
 };
 
 export default theme;

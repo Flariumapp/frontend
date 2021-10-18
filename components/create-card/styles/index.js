@@ -10,10 +10,11 @@ export const Container = styled.div`
     width: 200px;
     height: 250px;
     margin-left: 40px;
+    margin-top: 40px;
 
-    &:first-of-type {
+    /* &:first-of-type {
         margin-left: 0px;
-    }
+    } */
 
     &:hover {
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);

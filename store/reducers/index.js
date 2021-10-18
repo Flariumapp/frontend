@@ -4,6 +4,7 @@ import galleryReducer from './gallery';
 import userReducer from './user';
 import locationReducer from './location';
 import companyReducer from './company';
+import bankReducer from './bank';
 
 export {
     authReducer,
@@ -12,4 +13,5 @@ export {
     userReducer,
     locationReducer,
     companyReducer,
+    bankReducer,
 };

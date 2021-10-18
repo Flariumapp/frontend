@@ -1,7 +1,7 @@
 import { SET_FLIGHTS, FLIGHT_SUCCESS } from '../action-types';
 
 const initialState = {
-    flights: [],
+    flights: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
         case SET_FLIGHTS:
             return {
                 ...state,
-                flights
+                flights: action.flights,
             }
         case FLIGHT_SUCCESS:
             return state;

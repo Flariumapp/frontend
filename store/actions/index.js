@@ -42,3 +42,12 @@ export {
     addGallery,
     removeGallery,
 } from './gallery';
+
+export {
+    addBank,
+    addBankGallery,
+    fetchBanks,
+    removeBank,
+    resetBankGallery,
+    updateBank,
+} from './bank';

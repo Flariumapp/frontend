@@ -9,7 +9,17 @@ import { useSession } from 'next-auth/client';
 
 const { Search } = Input;
 
-const SearchInput = ({ searchId, type = 'location', size, value, setValue, width, placeholder }) => {
+const SearchInput = ({
+    searchId,
+    type = 'location',
+    size,
+    value,
+    setValue,
+    width,
+    placeholder,
+    clearSearch,
+    setClearSearch,
+}) => {
     const [session, loading] = useSession();
     const wrapperRef = useRef(null);
 
@@ -76,6 +86,14 @@ const SearchInput = ({ searchId, type = 'location', size, value, setValue, width
         }
     }, [value]);
 
+    useEffect(() => {
+        if (clearSearch) {
+            setSearch('');
+            setResults([]);
+            setClearSearch(false);
+        }
+    }, [clearSearch]);
+
     const handleSearch = useCallback(async () => {
         if (!loading && session) {
             if (search.trim().length > 0) {
@@ -101,6 +119,14 @@ const SearchInput = ({ searchId, type = 'location', size, value, setValue, width
         };
     }, [handleSearch]);
 
+    const handleResultItemClick = (index) => {
+        setSearchIndex(index);
+        if (results.length > 0) {
+            setValue(results[index].item);
+            setSearch(results[index].item.name);
+            setResults([]);
+        } 
+    }
 
     return (
         <Container>
@@ -127,7 +153,10 @@ const SearchInput = ({ searchId, type = 'location', size, value, setValue, width
                                 results.map(({ item }, index) => {
                                     const modifiedGallery = type === 'location' ? item.gallery[0] : item.logo;
                                     return (
-                                        <ResultItem isActive={index === searchIndex}>
+                                        <ResultItem
+                                            isActive={index === searchIndex}
+                                            onClick={() => handleResultItemClick(index)}
+                                        >
                                             <ResultImage
                                                 loader={() => galleryUrl(modifiedGallery)}
                                                 src={galleryUrl(modifiedGallery)}

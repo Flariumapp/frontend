@@ -29,4 +29,10 @@ export const createType = [
         illustration: '/illustrations/company.svg',
         path: '/company',
     },
+    {
+        id: 'c6',
+        title: 'Add Bank',
+        illustration: '/illustrations/bank.svg',
+        path: '/bank',
+    },
 ];

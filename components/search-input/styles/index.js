@@ -1,11 +1,16 @@
 import styled from 'styled-components/macro';
 import Image from 'next/image';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+    position: relative;
+`;
 
-export const InputContainer = styled.div``;
+export const InputContainer = styled.div`
+`;
 
 export const ResultContainer = styled.div`
+    width: 100%;
+    position: absolute;
     z-index: 300;
     display: block;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
@@ -19,10 +24,10 @@ export const ResultItem = styled.div`
     flex-direction: row;
     align-items: center;
     padding: 10px;
-    background-color: ${ ({ isActive, theme }) => isActive ? theme.secondary : theme.light };
+    background-color: ${ ({ isActive, theme }) => isActive ? theme.greyish : theme.light };
 
     &:hover {
-        background-color: ${ ({ theme }) => theme.secondary };
+        background-color: ${ ({ theme }) => theme.greyish };
     }
 `;
 

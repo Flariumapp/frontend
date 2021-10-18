@@ -7,6 +7,32 @@ export const Container = styled.div`
     padding: 40px;
 `;
 
+export const Wrapper = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -60%);
+    padding: 40px;
+`;
+
+export const AppLegendContainer = styled.div``;
+
+export const AppLegendMedium = styled.p`
+    font-size: 50px;
+    font-weight: 400;
+    color: ${ ({ theme }) => theme.light };
+    margin: 0;
+    line-height: 70px;
+`;
+
+export const AppLegendLarge = styled.p`
+    font-size: 120px;
+    font-weight: 500;
+    color: ${ ({ theme }) => theme.light };
+    margin: 0;
+    line-height: 120px;
+`;
+
 export const Section = styled.div`
     margin-top: 50px;
 `;

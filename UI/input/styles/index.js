@@ -26,6 +26,7 @@ export const TextInput = styled.input`
     background-color: rgba(255, 255, 255, 0);
     margin: 0;
     color: ${ ({ color = '#000' }) => color };
+    padding: 0;
     ::placeholder {
         /* color: ${ ({ theme }) => theme.light }; */
         font-size: 16px;

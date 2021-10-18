@@ -95,7 +95,9 @@ const Navigator = ({ dark, currentUser }) => {
         <Container>
             <Wrapper>
                 <BrandSection>
-                    <Brand dark={dark} />
+                    <NavLink href={'/'}>
+                        <a><Brand dark={dark} /></a>
+                    </NavLink>
                 </BrandSection>
                 <MidSection />
                 <NavSection>

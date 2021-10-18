@@ -23,9 +23,8 @@ export const Paragraph = styled.p`
 
 export const SuperHeading = styled.h1`
     cursor: ${ ({ pointer }) => pointer ? 'pointer' : 'default' };
-    font-size: 50px;
     color: ${ ({ color = '#000' }) => color };
     font-size: ${ ({ size = 50 }) => size + 'px' };
     margin: 0;
-    line-height: 70px;
+    line-height: 80px;
 `;

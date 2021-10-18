@@ -6,17 +6,45 @@ export const Container = styled.div`
 `;
 
 export const Display = styled.div`
-    width: 50%;
-`;
-
-export const Section = styled.div`
     display: flex;
     flex-direction: column;
     width: 50%;
+    padding: 60px;
+`;
+
+export const BodyContainer = styled.div`
+    flex: 1;
+`;
+
+export const MethodContainer = styled.div`
+    height: 150px;
+`;
+
+export const MethodText = styled.p`
+    margin: 0;
+    font-size: 16px;
+    color: ${ ({ theme }) => theme.light };
+`;
+
+export const MethodList = styled.div`
+    display: flex;
+    flex-direction: row;
+`;
+
+export const Section = styled.div`
+    width: 50%;
+`;
+
+export const Form = styled.form``;
+
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    padding: 80px;
+    width: 100%;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
-    padding: 80px;
 `;
 
 export const InputContainer = styled.div`

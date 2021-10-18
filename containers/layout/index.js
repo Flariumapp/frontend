@@ -3,14 +3,23 @@ import Navigator from '../../components/navigator';
 import Footer from '../../components/footer';
 import { Container, Main } from './styles';
 import Background from '../../components/background';
+import { backgroundList } from '../../utility/background-list';
 
 const Layout = ({ children }) => {
     const router = useRouter();
 
+    const randomNum = (min, max) => {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
     if (router.pathname === '/auth') {
+        const length = backgroundList['auth'].length;
+        const index = randomNum(0, length - 1);
+        const { image, dark } = backgroundList['auth'][index];
+
         return (
             <Container>
-                <Background img={'/images/backgrounds/airport-flat.jpg'}>
+                <Background img={image}>
                     <Main>
                         {children}
                     </Main>
@@ -20,9 +29,13 @@ const Layout = ({ children }) => {
     }
 
     if (router.pathname === '/' || router.pathname === '/guest') {
+        const length = backgroundList['home'].length;
+        const index = randomNum(0, length - 1);
+        const { image, dark } = backgroundList['home'][index];
+
         return (
             <Container>
-                <Background img={'/images/backgrounds/PlaneHack.png'}>
+                <Background img={image}>
                     <Navigator />
                     <Main>
                         {children}

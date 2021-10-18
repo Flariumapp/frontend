@@ -2,10 +2,10 @@ import axios from '../../axios-config';
 import { header } from '../../utility/header';
 import { SET_FLIGHTS, FLIGHT_SUCCESS } from '../action-types';
 
-export const fetchFlights = (token) => {
+export const fetchFlights = (token, query = '') => {
     return async dispatch => {
         try {
-            const response = await axios.get('flight', header(token));
+            const response = await axios.get('flight' + query, header(token));
             const { flights } = response.data;
             dispatch(setFlights(flights));
         } catch (err) {

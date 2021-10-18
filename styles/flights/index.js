@@ -1,24 +1,26 @@
 import styled from 'styled-components/macro';
+import Image from 'next/image';
 
 export const Container = styled.div`
     width: 100%;
 `;
 
 export const LoadingContainer = styled.div`
-    height: 500px;
+    position: relative;
+    height: 90vh;
     width: 100%;
-    justify-content: center;
-    align-items: center;
 `;
 
-export const Loader = styled.div`
-    margin: auto;
-    margin-top: 200px;
+export const LoaderSection = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 `;
 
 export const EntrySection = styled.div`
     height: 100px;
-    width: 70%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -27,15 +29,18 @@ export const EntrySection = styled.div`
     text-align: center;
 `;
 
-export const Form = styled.form``;
+export const Form = styled.form`
+    width: 100%;
+`;
+
+export const InputSection = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+`;
 
 export const InputContainer = styled.div`
-    display: inline-block;
-    margin: 0px 10px;
-
-    &:first-of-type {
-        margin-left: 0;
-    }
+    flex: 1;
 `;
 
 export const ButtonContainer = styled.div`
@@ -48,16 +53,18 @@ export const ButtonContainer = styled.div`
 `;
 
 export const FlightsTable = styled.div`
-    width: 70%;
+    width: 80%; 
     margin: auto;
     min-height: 42vh;
     justify-content: center;
 `;
 
 export const Display = styled.div`
-    height: 60px;
-    width: 100px;
+    height: ${ ({ size }) => size + 'px' };
+    width: ${ ({ size }) => size + 'px' };
+    border-radius: 5px;
     overflow: hidden;
+    border: 0.2px solid #ccc;
 `;
 
 export const Logo = styled.img`
@@ -70,4 +77,15 @@ export const Status = styled.p`
     text-transform: capitalize;
     margin: 0;
     color: ${ ({ color }) => color };
+`;
+
+export const FieldContainer = styled.div`
+    /* display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center; */
+`;
+
+export const FieldText = styled.p`
+    margin: 0;
 `;
