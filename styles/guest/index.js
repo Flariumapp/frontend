@@ -23,6 +23,7 @@ export const AppLegendMedium = styled.p`
     color: ${ ({ theme }) => theme.light };
     margin: 0;
     line-height: 70px;
+    text-shadow: 1px 1px 3px #444;
 `;
 
 export const AppLegendLarge = styled.p`
@@ -31,6 +32,7 @@ export const AppLegendLarge = styled.p`
     color: ${ ({ theme }) => theme.light };
     margin: 0;
     line-height: 120px;
+    text-shadow: 1px 1px 3px #444;
 `;
 
 export const Section = styled.div`

@@ -1,6 +1,6 @@
 import Img from 'next/image';
 
-const Image = ({ src, alt, height, width, objectFit = 'cover' }) => {
+const Image = ({ src, alt, height, width, objectFit = 'cover', ...props }) => {
     return (
         <Img
             loader={() => src}
@@ -9,6 +9,7 @@ const Image = ({ src, alt, height, width, objectFit = 'cover' }) => {
             height={height}
             width={width}
             objectFit={objectFit}
+            {...props}
         />
     );
 }

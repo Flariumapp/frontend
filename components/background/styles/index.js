@@ -4,7 +4,7 @@ export const Container = styled.div`
     height: 100vh;
     width: 100vw;
     background-color: ${ ({ theme }) => theme.dark };
-    background-image: ${({ img = '/images/backgrounds/plane-over-sea.jpeg' }) => `url(${img})`};
+    background: ${({ img = '/images/backgrounds/plane-over-sea.jpeg' }) => `linear-gradient(#00000033, #00000033), url(${img})`};
     background-repeat: no-repeat;
     background-position: 0 0;
     background-size: cover;

@@ -8,6 +8,8 @@ import Table from './table';
 import Text from './text';
 import Select from './select';
 import DatePicker from './date-picker';
+import CheckBox from './check-box';
+import Carousel from './carousel';
 
 export {
     Alert,
@@ -20,4 +22,6 @@ export {
     Text,
     Select,
     DatePicker,
+    CheckBox,
+    Carousel,
 };

@@ -5,6 +5,8 @@ const theme = {
     secondary: '#c9c9c9',
     darkish: '#434343',
     greyish: '#dedede',
+    danger: '#ff0000',
+    success: '#2ab002',
 };
 
 export default theme;

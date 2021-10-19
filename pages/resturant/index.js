@@ -1,19 +1,38 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import OrderCalc from '../../components/order-calc';
 import OrderList from '../../components/order-list';
+import ProductList from '../../components/product-list';
 import { Container, HeadingContainer } from '../../styles/resturant';
-import { Text } from '../../UI';
+import { Text, Carousel } from '../../UI';
+import { getSession } from 'next-auth/client';
+import buildClient from '../api/build-client';
+import { header } from '../../utility/header';
+import { productSubCategoryMapList } from '../../utility/product-category-list';
+import { carouselList } from '../../utility/carousel-list';
+import { useDispatch, useSelector } from 'react-redux';
+import CartList from '../../components/cart-list';
+import { addCart, deleteCart, updateCart } from '../../store/actions';
 
-const ResturantPage = () => {
-    const [foods, setFoods] = useState([]);
+const ResturantPage = ({ session, foodList }) => {
+    const dispatch = useDispatch();
 
-    const deleteItem = (id) => {
-        const updatedFoods = foods.filter(food => food.id !== id);
-        setFoods(updatedFoods);
+    const carts = useSelector(state => state.crt.carts);
+
+    const [updateCalc, setUpdateCalc] = useState(false);
+    
+    const addItem = async (food) => {
+        await dispatch(addCart(session.jwt, {
+            product: food.id,
+            quantity: 1,
+        }));   
     }
 
-    const addItem = (food) => {
-        setFoods([...foods, food]);
+    const updateItem = async (id, cart) => {
+        await dispatch(updateCart(session.jwt, id, cart));
+    }
+
+    const deleteItem = async (id) => {
+        await dispatch(deleteCart(session.jwt, id));
     }
 
     const orderNow = () => {
@@ -22,13 +41,69 @@ const ResturantPage = () => {
 
     return (
         <Container>
-            <HeadingContainer>
-                <Text type="heading">Food and Resturants</Text>
-            </HeadingContainer>
-            <OrderList list={foods} deleteItem={deleteItem} />
-            <OrderCalc list={foods} orderNow={orderNow} />
+            <Carousel list={carouselList['food']} />
+            <div style={{ height: 20 }} />
+            <CartList
+                list={carts}
+                type='food'
+                updateItem={updateItem}
+                deleteItem={deleteItem}
+                size={80}
+                orderNow={orderNow}
+                updateCalc={updateCalc}
+                setUpdateCalc={setUpdateCalc}
+            />
+            {
+                foodList.map(subCategory => 
+                    <ProductList
+                        key={subCategory.id}
+                        title={subCategory.title}
+                        list={subCategory.list}
+                        addItem={addItem}
+                        deleteItem={deleteItem}
+                        orderList={carts}
+                    />
+                )
+            }
         </Container>
     );
+}
+
+export const getServerSideProps = async (context) => {
+    const session = await getSession({ req: context.req });
+
+    if (!session || !session.currentUser) {
+        return {
+            redirect: {
+                destination: '/guest',
+            }
+        }
+    }
+
+
+    const client = buildClient(context);
+
+    
+    const response = await client.get('product?category=food', header(session.jwt));
+    const { products } = response.data;
+    
+    const subCategories = productSubCategoryMapList['food'];
+
+    const foodList = [];
+    subCategories.forEach(({ id, name }) => {
+        foodList.push({
+            id,
+            title: name,
+            list: products.filter(food => food.subCategory === name),
+        });
+    });
+
+    return {
+        props: {
+            session,
+            foodList,
+        }
+    }
 }
 
 export default ResturantPage;

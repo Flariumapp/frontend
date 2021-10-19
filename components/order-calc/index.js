@@ -11,13 +11,10 @@ const OrderCalc = ({ list = [], orderNow, type }) => {
 
     return (
         <Container>
-            <TextContainer>
-                <Text>{type === 'food' ? 'Food' : 'Dress'} Items = {count}</Text>
-                <div style={{ width: 20 }} />
-                <Text>Total Price = {total}</Text>
-            </TextContainer>
-            <div style={{ height: 20 }} />
-            <Button size="large" onPress={orderNow}>Order Now</Button>
+            <Text style={{ fontSize: 15 }}>{type === 'food' ? 'Food' : 'Dress'} Items = {count}</Text>
+            <Text style={{ fontSize: 15 }}>Total Price = {total}</Text>
+            <div style={{ height: 15 }} />
+            <Button onPress={orderNow} block>Order Now</Button>
         </Container>
     );
 }

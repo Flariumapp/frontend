@@ -5,6 +5,8 @@ import userReducer from './user';
 import locationReducer from './location';
 import companyReducer from './company';
 import bankReducer from './bank';
+import productReducer from './product';
+import cartReducer from './cart';
 
 export {
     authReducer,
@@ -14,4 +16,6 @@ export {
     locationReducer,
     companyReducer,
     bankReducer,
+    productReducer,
+    cartReducer,
 };

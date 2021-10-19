@@ -5,11 +5,12 @@ export const Container = styled.div`
 `;
 
 export const List = styled.div`
-    height: 100px;
-    display: flex;
+    height: 150px;
+    display: flexbox;
+    overflow: auto;
     flex-direction: row;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     border: 0.5px solid #ccc;
     border-radius: 4px;
     background-color: #f0f0f0;

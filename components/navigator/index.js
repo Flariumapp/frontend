@@ -18,7 +18,7 @@ const Navigator = ({ dark, currentUser }) => {
         {
             id: 'nav2',
             name: 'Shops & Utilities',
-            path: '/shops',
+            path: '/shop',
         },
         {
             id: 'nav3',
@@ -52,7 +52,7 @@ const Navigator = ({ dark, currentUser }) => {
         {
             id: 'nav2',
             name: 'Shops & Utilities',
-            path: '/shops',
+            path: '/shop',
         },
         {
             id: 'nav3',

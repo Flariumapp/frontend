@@ -1,6 +1,14 @@
 import { combineReducers } from 'redux';
 import {
-  authReducer, bankReducer, companyReducer, flightReducer, galleryReducer, locationReducer, userReducer, 
+  authReducer,
+  bankReducer,
+  companyReducer,
+  flightReducer,
+  galleryReducer,
+  locationReducer,
+  userReducer,
+  productReducer,
+  cartReducer,
 } from './reducers';
 
 const rootReducer = combineReducers({
@@ -11,6 +19,8 @@ const rootReducer = combineReducers({
   usr: userReducer,
   gly: galleryReducer,
   bnk: bankReducer,
+  prd: productReducer,
+  crt: cartReducer,
 });
 
 export default rootReducer;

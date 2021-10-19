@@ -1,17 +1,12 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
+    width: 200px;
     justify-content: center;
-    width: 100%;
     padding: 20px;
-    text-align: center;
-`;
-
-export const TextContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
+    background-color: ${ ({ theme }) => theme.light };
+    margin-right: 10px;
+    /* box-shadow: 0 1px 3px #444; */
+    border-radius: 5px;
+    border: ${ ({ theme }) => `0.2px solid ${theme.secondary}` };
 `;
