@@ -28,7 +28,7 @@ export const TextInput = styled.input`
     color: ${ ({ color = '#000' }) => color };
     padding: 0;
     ::placeholder {
-        /* color: ${ ({ theme }) => theme.light }; */
+        color: ${ ({ theme }) => theme.darkish };
         font-size: 16px;
         margin: 0;
     }

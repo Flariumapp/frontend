@@ -1,6 +1,7 @@
 import { BrandSection, Container, Wrapper, MidSection, NavItem, NavLink, NavSection, NavText } from './styles';
 import Brand from '../brand';
 import { useSession } from 'next-auth/client';
+import ProfileCircle from '../profile-circle';
 
 const Navigator = ({ dark, currentUser }) => {
     const [session, loading] = useSession();
@@ -112,6 +113,13 @@ const Navigator = ({ dark, currentUser }) => {
                             </NavItem>
                         ))
                     }
+                    {isAuthenticated && <NavItem key="profile">
+                        <NavLink href={'/profile'}>
+                            <a>
+                                <ProfileCircle size={35} bordered />
+                            </a>
+                        </NavLink>
+                    </NavItem>}
                 </NavSection>
             </Wrapper>
         </Container>

@@ -13,7 +13,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
-    padding: 20px 0;
+    padding: 10px 0;
     align-items: center;
 `;
 
@@ -26,11 +26,14 @@ export const MidSection = styled.div`
 export const NavSection = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
 `;
 
 export const NavItem = styled.div`
     cursor: pointer;
     margin: 0 20px;
+    height: 100%;
+    align-items: center;
 `;
 
 export const NavLink = styled(Link)`
@@ -38,6 +41,6 @@ export const NavLink = styled(Link)`
 `;
 
 export const NavText = styled.p`
-    color: ${ ({ theme, dark }) => dark ? theme.dark : theme.light };
+    margin: 0;
+    color: ${ ({ theme, dark }) => dark ? theme.darkish : theme.light };
 `;
-

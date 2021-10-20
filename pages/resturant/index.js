@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import OrderCalc from '../../components/order-calc';
-import OrderList from '../../components/order-list';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import ProductList from '../../components/product-list';
-import { Container, HeadingContainer } from '../../styles/resturant';
-import { Text, Carousel } from '../../UI';
+import { Container } from '../../styles/resturant';
+import { Carousel } from '../../UI';
 import { getSession } from 'next-auth/client';
 import buildClient from '../api/build-client';
 import { header } from '../../utility/header';
@@ -14,6 +13,7 @@ import CartList from '../../components/cart-list';
 import { addCart, deleteCart, updateCart } from '../../store/actions';
 
 const ResturantPage = ({ session, foodList }) => {
+    const router = useRouter();
     const dispatch = useDispatch();
 
     const carts = useSelector(state => state.crt.carts);
@@ -36,7 +36,7 @@ const ResturantPage = ({ session, foodList }) => {
     }
 
     const orderNow = () => {
-
+        router.push('/order');
     }
 
     return (

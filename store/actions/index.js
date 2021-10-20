@@ -9,6 +9,7 @@ export {
     fetchUsers,
     fetchCurrentUser,
     updateUser,
+    updateUserProfile,
     deleteUser,
 } from './user';
 
@@ -67,4 +68,12 @@ export {
     deleteCart,
     fetchCart,
     updateCart,
+    resetCart,
 } from './cart';
+
+export {
+    addOrder,
+    deleteOrder,
+    fetchOrders,
+    updateOrder,
+} from './order';

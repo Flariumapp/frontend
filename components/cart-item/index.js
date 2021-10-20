@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Image } from '../../UI';
 import {
-    Container, Display, Title, Row, ProductSection, Quantity, QuantityContainer, QuantitySection,
+    Container, Display, Title, Row, ProductSection, Quantity, QuantityContainer, QuantitySection, Cost
 } from './styles';
 import { IoIosClose } from 'react-icons/io';
 import { galleryUrl } from '../../utility/media-url';
@@ -49,7 +49,7 @@ const CartItem = ({ item, size = 60, updateItem, deleteItem, updateCalc, setUpda
                 </Display>
                 <div style={{ height: 3 }} />
                 <Title>{name}</Title>
-                <Title>Rs. {price * qty}</Title>
+                <Cost>Rs. {price * qty}</Cost>
             </ProductSection>
             <QuantitySection>
                 <Row>

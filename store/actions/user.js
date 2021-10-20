@@ -1,6 +1,7 @@
 import axios from '../../axios-config';
 import { header } from '../../utility/header';
 import * as actionTypes from '../action-types';
+import { getSession } from 'next-auth/client';
 
 export const fetchUsers = (token) => {
     return async dispatch => {
@@ -51,6 +52,17 @@ export const updateUser = (token, id, userData) => {
     return async dispatch => {
         try {
             await axios.put('user/' + id, userData, header(token));
+            dispatch(userSuccess());
+        } catch (err) {
+            throw err;
+        }
+    }
+}
+
+export const updateUserProfile = (token, imageIndex) => {
+    return async dispatch => {
+        try {
+            const response = await axios.put('update-profile', { imageIndex }, header(token));
             dispatch(userSuccess());
         } catch (err) {
             throw err;

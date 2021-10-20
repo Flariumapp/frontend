@@ -7,6 +7,7 @@ import companyReducer from './company';
 import bankReducer from './bank';
 import productReducer from './product';
 import cartReducer from './cart';
+import orderReducer from './order';
 
 export {
     authReducer,
@@ -18,4 +19,5 @@ export {
     bankReducer,
     productReducer,
     cartReducer,
+    orderReducer,
 };

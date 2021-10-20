@@ -1,5 +1,5 @@
 import axios from '../../axios-config';
-import { ADD_TO_CART, CART_SUCCESS, DELETE_CART_ITEM, SET_CART, UPDATE_CART_ITEM } from "../action-types";
+import { ADD_TO_CART, CART_SUCCESS, DELETE_CART_ITEM, RESET_CART, SET_CART, UPDATE_CART_ITEM } from "../action-types";
 import { header } from '../../utility/header';
 
 export const fetchCart = (token) => {
@@ -76,6 +76,18 @@ const deleteCartItem = (id) => {
         type: DELETE_CART_ITEM,
         id,
     };
+}
+
+export const resetCart = () => {
+    return dispatch => {
+        dispatch(resetCartItem());
+    }
+}
+
+const resetCartItem = () => {
+    return {
+        type: RESET_CART,
+    }
 }
 
 const cartSuccess = () => {

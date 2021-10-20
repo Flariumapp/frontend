@@ -10,6 +10,7 @@ import Select from './select';
 import DatePicker from './date-picker';
 import CheckBox from './check-box';
 import Carousel from './carousel';
+import Empty from './empty';
 
 export {
     Alert,
@@ -24,4 +25,5 @@ export {
     DatePicker,
     CheckBox,
     Carousel,
+    Empty,
 };

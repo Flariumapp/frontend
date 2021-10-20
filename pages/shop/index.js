@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ProductList from '../../components/product-list';
 import { Container } from '../../styles/resturant';
@@ -12,6 +13,7 @@ import { updateCart, deleteCart, addCart } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const ShopPage = ({ session, clothList }) => {
+    const router = useRouter();
     const dispatch = useDispatch();
 
     const carts = useSelector(state => state.crt.carts);
@@ -34,7 +36,7 @@ const ShopPage = ({ session, clothList }) => {
     }
 
     const orderNow = () => {
-
+        router.push('/order');
     }
 
     return (

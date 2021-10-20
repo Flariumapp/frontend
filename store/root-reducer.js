@@ -9,6 +9,7 @@ import {
   userReducer,
   productReducer,
   cartReducer,
+  orderReducer,
 } from './reducers';
 
 const rootReducer = combineReducers({
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   bnk: bankReducer,
   prd: productReducer,
   crt: cartReducer,
+  ord: orderReducer,
 });
 
 export default rootReducer;

@@ -1,4 +1,4 @@
-import { SET_CART, CART_SUCCESS, ADD_TO_CART, UPDATE_CART_ITEM, DELETE_CART_ITEM  } from '../action-types';
+import { SET_CART, CART_SUCCESS, ADD_TO_CART, UPDATE_CART_ITEM, DELETE_CART_ITEM, RESET_CART  } from '../action-types';
 
 const initialState = {
     ids: [],
@@ -33,6 +33,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 carts: cartAfterDeletion,
                 ids: updatedIds,
+            }
+        case RESET_CART:
+            return {
+                ...state,
+                carts: [],
+                ids: [],
             }
         case CART_SUCCESS:
             return state;

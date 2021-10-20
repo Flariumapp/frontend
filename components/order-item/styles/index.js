@@ -2,14 +2,21 @@ import styled from 'styled-components/macro';
 import Image from 'next/image';
 
 export const Container = styled.div`
-    /* position: relative; */
+    display: flex;
+    flex-direction: row;
     border-radius: 5px;
-    border: 0.2px solid #ccc;
+    /* border: 0.2px solid #ccc; */
     overflow: hidden;
-    padding: 0 5px;
+    padding: 10px;
     text-align: center;
     background: ${ ({ theme }) => theme.light };
     margin: 0 5px;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+        box-shadow: 0 2px 5px #ccc;
+    }
 `;
 
 export const Row = styled.div`
@@ -18,29 +25,48 @@ export const Row = styled.div`
     align-items: center;
 `;
 
-export const Wrapper = styled.div`
+export const Display = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     overflow: hidden;
     height: ${ ({ size }) => size + 'px' };
     width: ${ ({ size }) => size + 'px' };
-    border: ${ ({ theme }) => `0.2px solid ${theme.secondary}` };
+    /* border: ${ ({ theme }) => `0.2px solid ${theme.secondary}` }; */
 `;
 
-export const Cut = styled.div`
-    /* position: absolute;
-    top: 10;
-    right: 10;
-    padding: 5px; */
-`;
+export const Photo = styled(Image)``;
 
-export const Photo = styled(Image)`
-    border-radius: 10px;
-    object-fit: cover;
+export const TitleContainer = styled.div`
+    align-items: center;
 `;
 
 export const Title = styled.p`
-    margin-top: 5px;
-    font-size: 12px;
+    margin: 0;
+    font-size: 14px;
+`;
+
+export const QuantityContainer = styled.div`
+    align-items: center;
+`;
+
+export const Quantity = styled.p`
+    margin: 0;
+    font-size: 14px;
+`;
+
+export const CostContainer = styled.div`
+    align-items: center;
+`;
+
+export const Cost = styled.p`
+    margin: 0;
+    font-size: 14px;
+    color: ${ ({ theme }) => theme.primary };
+`;
+
+export const IconContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;

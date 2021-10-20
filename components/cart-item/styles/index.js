@@ -52,6 +52,12 @@ export const Title = styled.p`
     font-size: 12px;
 `;
 
+export const Cost = styled.p`
+    margin: 0;
+    font-size: 12px;
+    color: ${ ({ theme }) => theme.primary };
+`;
+
 export const QuantitySection = styled.div`
     display: flex;
     flex-direction: column;
@@ -64,9 +70,11 @@ export const QuantityContainer = styled.div`
     text-align: center;
     border: 0.2px solid #cccccc;
     vertical-align: middle;
+    height: 30px;
 `;
 
 export const Quantity = styled.p`
     font-size: 12px;
     text-align: center;
+    line-height: 30px;
 `;

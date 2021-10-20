@@ -1,12 +1,25 @@
 import styled from 'styled-components/macro';
 
 export const Container = styled.div`
-    width: 200px;
-    justify-content: center;
-    padding: 20px;
-    background-color: ${ ({ theme }) => theme.light };
-    margin-right: 10px;
-    /* box-shadow: 0 1px 3px #444; */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+`;
+
+export const Row = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 0.2px solid #ccc;
+    padding: 5px 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
-    border: ${ ({ theme }) => `0.2px solid ${theme.secondary}` };
+`;
+
+export const Column = styled.div`
+    flex: 1;
+    justify-content: center;
+    text-align: ${ ({ textAlign = 'center' }) => textAlign };
 `;

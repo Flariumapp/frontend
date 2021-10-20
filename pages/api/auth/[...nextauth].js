@@ -71,15 +71,19 @@ export default NextAuth({
                 token.jwt = user.jwt;
                 token.user = user.currentUser;
             }
+            
             return Promise.resolve(token);
         },
         session: async (session, token) => {
             session.currentUser = token.user;
             session.jwt = token.jwt;
 
-            console.log('session', session);
-
             const { data } = await axios.get('current-user', headerConfig(session.jwt));
+            const { currentUser } = data;
+
+            session.currentUser = currentUser;
+            
+            console.log('session', session);
 
             // console.log('current user data in callbacks', data);
 

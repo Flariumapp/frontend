@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Text, Input, Button } from '../UI';
 import { Container, Wrapper, Section, InputSection, AppLegendContainer, AppLegendLarge, AppLegendMedium, FlightBookContainer, FacilityContainer, FacilityRow } from '../styles';
 import Facility from '../components/facility';
