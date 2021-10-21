@@ -90,3 +90,9 @@ export const OrderItemName = styled.p`
     font-size: 17px;
     color: ${ ({ theme }) => theme.darkish };
 `;
+
+export const OptionSection = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;

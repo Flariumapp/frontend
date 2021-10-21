@@ -9,8 +9,9 @@ export const Container = styled.div`
     padding: 20px;
     width: 200px;
     height: 250px;
-    margin: 20px;
+    /* margin: 20px; */
     margin-top: 20px;
+    margin-right: 20px;
 
     /* &:first-of-type {
         margin-left: 0px;

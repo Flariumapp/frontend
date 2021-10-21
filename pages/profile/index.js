@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 import {
-    Container, Wrapper, Section, IdentitySection, Name, InfoSection, InfoRow, InfoCol, InfoLabel, InfoText, OrderList, OrderItem, OrderItemDisplay, OrderItemName, Border,
+    Container, Wrapper, Section, IdentitySection, Name, InfoSection, InfoRow, InfoCol, InfoLabel, InfoText, OrderList, OrderItem, OrderItemDisplay, OrderItemName, Border, OptionSection
 } from '../../styles/profile';
 import buildClient from '../api/build-client';
 import { header } from '../../utility/header';
@@ -10,8 +11,12 @@ import { Text, Image, Empty } from '../../UI';
 import { galleryUrl } from '../../utility/media-url';
 import theme from '../../styles/theme';
 import ProfileModal from '../../components/profile-modal';
+import CreateCard from '../../components/create-card';
+import { profileOptionsList } from '../../utility/profile-options-list';
+import { ProfileOptionMap } from '../../utility/profile-option-map';
  
-const ProfilePage = ({ session, orders }) => {
+const ProfilePage = ({ session, wallet, orders }) => {
+    const router = useRouter();
     const [currentUser, setCurrentUser] = useState(session.currentUser);
 
     const [bookings, setBookings] = useState([]);
@@ -37,6 +42,10 @@ const ProfilePage = ({ session, orders }) => {
 
     const openModal = () => {
         setShowModal(true);
+    }
+
+    const goToCreateRoute = (path) => {
+        router.push(path);
     }
 
     return (
@@ -79,6 +88,30 @@ const ProfilePage = ({ session, orders }) => {
                         </InfoRow>
                     </InfoSection>
                 </Section>
+                <div style={{ height: 50 }} />
+                <Text type='paragraph' color={theme.darkish}>
+                    Profile Options
+                </Text>
+                <OptionSection>
+                    {
+                        profileOptionsList.map(option => {
+                            if (option.type === ProfileOptionMap.AddWallet) {
+                                if (wallet) {
+                                    return null;
+                                }
+                            }
+
+                            return <CreateCard
+                                id={option.id}
+                                illustration={option.illustration}
+                                path={option.path}
+                                title={option.title}
+                                goToCreateRoute={goToCreateRoute}
+                                defaultPath='/profile'
+                            />
+                        })
+                    }
+                </OptionSection>
                 <div style={{ height: 50 }} />
                 <Text type='paragraph' color={theme.darkish}>
                     Your Recent Items Ordered
@@ -135,14 +168,20 @@ export const getServerSideProps = async (context) => {
 
     const client = buildClient(context);
 
-    const response = await client.get('order', header(session.jwt));
+    const response1 = await client.get('order', header(session.jwt));
 
-    const { orders } = response.data;
+    const { orders } = response1.data;
+
+
+    const response2 = await client.get('my-wallet', header(session.jwt));
+
+    const { wallet } = response2.data;
 
     return {
         props: {
             session,
             orders,
+            wallet,
         }
     }
 }

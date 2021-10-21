@@ -10,6 +10,9 @@ import {
   productReducer,
   cartReducer,
   orderReducer,
+  walletReducer,
+  historyReducer,
+  bookReducer,
 } from './reducers';
 
 const rootReducer = combineReducers({
@@ -23,6 +26,9 @@ const rootReducer = combineReducers({
   prd: productReducer,
   crt: cartReducer,
   ord: orderReducer,
+  wlt: walletReducer,
+  hst: historyReducer,
+  buk: bookReducer,
 });
 
 export default rootReducer;

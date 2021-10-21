@@ -7,6 +7,7 @@ const theme = {
     greyish: '#dedede',
     danger: '#ff0000',
     success: '#2ab002',
+    milk: '#f0f0f0',
 };
 
 export default theme;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 import { message, Spin } from 'antd';
 import { DatePicker, Button, Table, Image } from '../../UI';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
@@ -18,6 +19,7 @@ import { buildFlightQuery } from '../../utility/build-flight-query';
 import theme from '../../styles/theme';
 
 const FlightsPage = ({ session, flights }) => {
+    const router = useRouter();
     const dispatch = useDispatch();
 
     const flts = useSelector(state => state.flt.flights);
@@ -43,7 +45,11 @@ const FlightsPage = ({ session, flights }) => {
         setIsLoading(true);
         await dispatch(fetchFlights(session.jwt, buildFlightQuery(origin, destination, departure)));
         setIsLoading(false);
-    }   
+    }
+    
+    const goToFlightDetail = (id) => {
+        router.push('/flights/' + id);
+    }
 
     const columns = [
         {
@@ -122,9 +128,11 @@ const FlightsPage = ({ session, flights }) => {
             render: (time) => {
                 const timeF = new Date(time).toLocaleString('en-US');
                 return (
-                    <FieldText>
-                        {timeF}
-                    </FieldText>
+                    <FieldContainer>
+                        <FieldText>
+                            {timeF}
+                        </FieldText>
+                    </FieldContainer>
                 );
             }
         },
@@ -135,9 +143,11 @@ const FlightsPage = ({ session, flights }) => {
             render: (time) => {
                 const timeF = new Date(time).toLocaleString('en-US');
                 return (
-                    <FieldText>
-                        {timeF}
-                    </FieldText>
+                    <FieldContainer>
+                        <FieldText>
+                            {timeF}
+                        </FieldText>
+                    </FieldContainer>
                 );
             }
         },
@@ -161,6 +171,16 @@ const FlightsPage = ({ session, flights }) => {
                 </Status>
             )
         },
+        {
+            title: 'View',
+            dataIndex: 'view',
+            key: 'view',
+            render: (text, record, index) => (
+                <Button onPress={() => goToFlightDetail(record.id)}>
+                    View
+                </Button>
+            )
+        }
     ];
 
     if(isLoading) {
@@ -223,7 +243,7 @@ const FlightsPage = ({ session, flights }) => {
                 </Form>
             </EntrySection>
             <FlightsTable>
-                <Table columns={columns} dataSource={flightList}  />
+                <Table columns={columns} dataSource={flightList} onPress={goToFlightDetail}  />
             </FlightsTable>
         </Container>
     );
@@ -231,6 +251,16 @@ const FlightsPage = ({ session, flights }) => {
 
 export const getServerSideProps = async (context) => {
     const session = await getSession({ req: context.req });
+
+
+    if (!session || !session.currentUser) {
+        return {
+            redirect: {
+                destination: '/guest',
+            }
+        };
+    }
+
     const client = buildClient(context);
     const { data } = await client.get('flight');
 

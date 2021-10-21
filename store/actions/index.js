@@ -77,3 +77,25 @@ export {
     fetchOrders,
     updateOrder,
 } from './order';
+
+export {
+    addWallet,
+    deleteWallet,
+    fetchWallet,
+    updateWallet,
+} from './wallet';
+
+export {
+    fetchHistory,
+    deleteHistory,
+} from './history';
+
+export {
+    addBooking,
+    addPassenger,
+    cancelBooking,
+    fetchBookings,
+    removePassenger,
+    resetPassengers,
+    setBookingFlight,
+} from './book';

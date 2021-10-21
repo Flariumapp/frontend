@@ -80,12 +80,11 @@ export const Status = styled.p`
 `;
 
 export const FieldContainer = styled.div`
-    /* display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center; */
+    max-width: 140px;
 `;
 
 export const FieldText = styled.p`
     margin: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 `;

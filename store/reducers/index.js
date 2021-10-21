@@ -8,6 +8,9 @@ import bankReducer from './bank';
 import productReducer from './product';
 import cartReducer from './cart';
 import orderReducer from './order';
+import walletReducer from './wallet';
+import historyReducer from './history';
+import bookReducer from './book';
 
 export {
     authReducer,
@@ -20,4 +23,7 @@ export {
     productReducer,
     cartReducer,
     orderReducer,
+    walletReducer,
+    historyReducer,
+    bookReducer,
 };

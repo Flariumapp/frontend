@@ -19,7 +19,7 @@ const ProfileCircle = ({ size = 70, overlay = false, bordered = false, onPress }
 
     return (
         <Container size={size} bordered={bordered} onClick={onPress} overlay={overlay}>
-            <Image src={url} height={size} width={size} />
+            <Image src={url} alt="profile-circle" height={size} width={size} />
         </Container>
     );
 }
