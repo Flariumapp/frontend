@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { Text, Input, Button } from '../UI';
+import { useRouter } from 'next/router';
+import { Text, Input, Button, DatePicker } from '../UI';
 import { Container, Wrapper, Section, InputSection, AppLegendContainer, AppLegendLarge, AppLegendMedium, FlightBookContainer, FacilityContainer, FacilityRow } from '../styles';
 import Facility from '../components/facility';
 import FlightBook from '../components/flight-book';
@@ -8,11 +9,21 @@ import { flightBooks } from '../data/bookings';
 import buildClient from './api/build-client';
 import { getSession } from 'next-auth/client';
 import headerConfig from './api/header-config';
+import SearchInput from '../components/search-input';
+import { buildFlightQuery } from '../utility/build-flight-query';
 
 const HomePage = () => {
+  const router = useRouter();
+
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [date, setDate] = useState('');
+
+  const [clearSearch, setClearSearch] = useState(false);
+
+  const searchFlights = () => {
+    router.push('flights/' + buildFlightQuery(from, to, date));
+  }
 
   return (
     <Container>
@@ -30,25 +41,37 @@ const HomePage = () => {
         </AppLegendContainer>
         <Section>
           <InputSection>
-            <Input
+            <SearchInput
+              clearSearch={clearSearch}
+              setClearSearch={setClearSearch}
+              searchId={'IndexOriginSearch'}
               label={'Origin'}
               placeholder={'Origin Point'}
               glass
               value={from}
               setValue={setFrom}
               width={300}
+              type='location'
             />
             <div style={{ width: 10 }} />
-            <Input
+            <SearchInput
+              clearSearch={clearSearch}
+              setClearSearch={setClearSearch}
+              searchId={'IndexDestinationSearch'}
               label={'Destination'}
               placeholder={'Destination Point'}
               glass
               value={to}
               setValue={setTo}
               width={300}
+              type='location'
             />
             <div style={{ width: 10 }} />
-            <Input
+            <DatePicker
+              id={'IndexDatePicker'}
+              clearSearch={clearSearch}
+              setClearSearch={setClearSearch}
+              searchId={'IndexDateSearch'}
               label={'Date'}
               placeholder={'Travel Date'}
               glass
@@ -57,7 +80,7 @@ const HomePage = () => {
               width={200}
             />
             <div style={{ width: 10 }} />
-            <Button glass>
+            <Button glass onPress={searchFlights}>
               Go
             </Button>
           </InputSection>

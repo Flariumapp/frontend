@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import axios from '../../axios-config';
 import { Input } from 'antd';
-import { Image, Text } from '../../UI';
+import { Input as UiInput } from '../../UI';
 import { Container, InputContainer, ResultContainer, ResultImage, ResultItem, ResultList, ResultText } from './styles';
 import { galleryUrl } from '../../utility/media-url';
 import { header } from '../../utility/header';
@@ -19,6 +19,8 @@ const SearchInput = ({
     placeholder,
     clearSearch,
     setClearSearch,
+    glass = false,
+    label,
 }) => {
     const [session, loading] = useSession();
     const wrapperRef = useRef(null);
@@ -129,31 +131,47 @@ const SearchInput = ({
     }
 
     return (
-        <Container>
-            <InputContainer>
-                <Search
-                    placeholder={placeholder}
-                    value={search}
-                    onChange={e => setSearch(e.target.value)}
-                    onSearch={handleSearch}
-                    enterButton
-                    style={{ margin: 0, width }}
-                    id={searchId}
-                    autoComplete="off"
-                    autoCorrect="off"
-                    size={size}
-                />
+        <Container glass={glass}>
+            <InputContainer glass={glass}>
+                {
+                    glass ?
+                    <UiInput
+                        placeholder={placeholder}
+                        value={search}
+                        setValue={setSearch}
+                        id={searchId}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        glass
+                        width={width}
+                        label={label}
+                    />
+                    :
+                    <Search
+                        placeholder={placeholder}
+                        value={search}
+                        onChange={e => setSearch(e.target.value)}
+                        onSearch={handleSearch}
+                        enterButton
+                        style={{ margin: 0, width }}
+                        id={searchId}
+                        autoComplete="off"
+                        autoCorrect="off"
+                        size={size}
+                    />
+                }
             </InputContainer>
             {
                 results.length > 0 && visible &&
                 (
-                    <ResultContainer ref={wrapperRef}>
-                        <ResultList>
+                    <ResultContainer glass={glass} ref={wrapperRef}>
+                        <ResultList glass={glass}>
                             {
                                 results.map(({ item }, index) => {
                                     const modifiedGallery = type === 'location' ? item.gallery[0] : item.logo;
                                     return (
                                         <ResultItem
+                                            glass={glass}
                                             isActive={index === searchIndex}
                                             onClick={() => handleResultItemClick(index)}
                                         >
@@ -166,7 +184,7 @@ const SearchInput = ({
                                                 objectFit="cover"
                                             />
                                             <div style={{ width: 10 }} />
-                                            <ResultText>{item.name}</ResultText>
+                                            <ResultText isActive={index === searchIndex} glass={glass}>{item.name}</ResultText>
                                         </ResultItem>
                                     );
                                 })

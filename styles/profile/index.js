@@ -67,6 +67,7 @@ export const OrderList = styled.div`
 `;
 
 export const OrderItem = styled.div`
+    width: 100px;
     text-align: center;
     /* justify-content: center; */
     margin: 0 15px;
@@ -87,6 +88,7 @@ export const OrderItemDisplay = styled.div`
 `;
 
 export const OrderItemName = styled.p`
+    text-overflow: ellipsis;
     font-size: 17px;
     color: ${ ({ theme }) => theme.darkish };
 `;

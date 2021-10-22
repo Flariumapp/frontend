@@ -1,15 +1,25 @@
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
-import { Text, Input, Button, Card } from '../../UI';
+import { Text, Input, Button, DatePicker } from '../../UI';
 import {
   Container, Section, InputSection, AppLegendContainer, AppLegendLarge, AppLegendMedium, Wrapper, FeatureSection, PartnerContainer, PartnerLogo, PartnerSection
 } from '../../styles/guest';
 import { features } from '../../data/features';
 import { partners } from '../../data/partners';
+import SearchInput from '../../components/search-input';
 
 const GuestPage = () => {
+  const router = useRouter();
+
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [date, setDate] = useState('');
+
+  const [clearSearch, setClearSearch] = useState(false);
+
+  const searchFlights = () => {
+    router.push('flights/' + buildFlightQuery(from, to, date));
+  }
 
   return (
     <Container>
@@ -27,25 +37,37 @@ const GuestPage = () => {
         </AppLegendContainer>
         <Section>
           <InputSection>
-            <Input
-              label={'From'}
-              placeholder={'Starting Point'}
+            <SearchInput
+              clearSearch={clearSearch}
+              setClearSearch={setClearSearch}
+              searchId={'GuestOriginSearch'}
+              label={'Origin'}
+              placeholder={'Origin Point'}
               glass
               value={from}
               setValue={setFrom}
               width={300}
+              type='location'
             />
             <div style={{ width: 10 }} />
-            <Input
-              label={'To'}
+            <SearchInput
+              clearSearch={clearSearch}
+              setClearSearch={setClearSearch}
+              searchId={'GuestDestinationSearch'}
+              label={'Destination'}
               placeholder={'Destination Point'}
               glass
               value={to}
               setValue={setTo}
               width={300}
+              type='location'
             />
             <div style={{ width: 10 }} />
-            <Input
+            <DatePicker
+              id={'GuestDatePicker'}
+              clearSearch={clearSearch}
+              setClearSearch={setClearSearch}
+              searchId={'GuestDateSearch'}
               label={'Date'}
               placeholder={'Travel Date'}
               glass
@@ -54,7 +76,7 @@ const GuestPage = () => {
               width={200}
             />
             <div style={{ width: 10 }} />
-            <Button glass>
+            <Button glass onPress={searchFlights}>
               Go
             </Button>
           </InputSection>

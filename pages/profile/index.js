@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import {
     Container, Wrapper, Section, IdentitySection, Name, InfoSection, InfoRow, InfoCol, InfoLabel, InfoText, OrderList, OrderItem, OrderItemDisplay, OrderItemName, Border, OptionSection
@@ -14,14 +14,13 @@ import ProfileModal from '../../components/profile-modal';
 import CreateCard from '../../components/create-card';
 import { profileOptionsList } from '../../utility/profile-options-list';
 import { ProfileOptionMap } from '../../utility/profile-option-map';
- 
-const ProfilePage = ({ session, wallet, orders }) => {
-    const router = useRouter();
-    const [currentUser, setCurrentUser] = useState(session.currentUser);
+import BookCard from '../../components/book-card'; 
 
-    const [bookings, setBookings] = useState([]);
+const ProfilePage = ({ session, wallet, orders, bookings }) => {
+    const router = useRouter();
+
+    const [currentUser, setCurrentUser] = useState(session.currentUser);
     const [showModal, setShowModal] = useState(false);
-    // const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         setCurrentUser(session.currentUser);
@@ -121,7 +120,7 @@ const ProfilePage = ({ session, wallet, orders }) => {
                     {
                         list.map(item => (
                             <OrderItem key={item.id}>
-                                <Border>
+                                {/* <Border> */}
                                     <OrderItemDisplay size={size}>
                                         <Image
                                             src={galleryUrl(item.gallery[0])}
@@ -130,7 +129,7 @@ const ProfilePage = ({ session, wallet, orders }) => {
                                             height={size}
                                         />
                                     </OrderItemDisplay>
-                                </Border>
+                                {/* </Border> */}
                                 <div style={{ height: 10 }} />
                                 <OrderItemName>
                                     {item.name}
@@ -144,7 +143,14 @@ const ProfilePage = ({ session, wallet, orders }) => {
                     Your Recent Flight Bookings
                 </Text>
                 <div style={{ height: 20 }} />
-                <Empty />
+                {
+                    bookings.length === 0 ?
+                        <Empty /> :
+                        bookings.map(booking => <Fragment key={booking.id} >
+                            <BookCard book={booking} />
+                            <div style={{ height: 20 }} />
+                        </Fragment>)
+                }
                 <div style={{ height: 100 }} />
             </Wrapper>
             <ProfileModal
@@ -177,11 +183,16 @@ export const getServerSideProps = async (context) => {
 
     const { wallet } = response2.data;
 
+    const response3 = await client.get('book', header(session.jwt));
+
+    const { bookings } = response3.data;
+
     return {
         props: {
             session,
             orders,
             wallet,
+            bookings,
         }
     }
 }

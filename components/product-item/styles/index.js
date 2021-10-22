@@ -5,6 +5,7 @@ export const Container = styled.div`
     border: ${ ({ theme }) => `0.2px solid ${theme.secondary}` };
     overflow: hidden;
     margin-bottom: 10px;
+    margin-right: 30px;
 
     &:hover {
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);

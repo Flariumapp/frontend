@@ -21,3 +21,15 @@ a {
   background: transparent;
   /* Optional: just make scrollbar invisible */
 }
+
+#IndexDatePicker::placeholder {
+  color: #444;
+  font-size: 16px;
+  margin: 0;
+}
+
+#GuestDatePicker::placeholder {
+  color: #444;
+  font-size: 16px;
+  margin: 0;
+}

@@ -15,10 +15,10 @@ import buildClient from '../api/build-client';
 import { galleryUrl } from '../../utility/media-url';
 import { FlightStatusHash } from '../../utility/flight-status-map';
 import SearchInput from '../../components/search-input';
-import { buildFlightQuery } from '../../utility/build-flight-query';
+import { buildFlightQuery, buildFlightQueryWithIds } from '../../utility/build-flight-query';
 import theme from '../../styles/theme';
 
-const FlightsPage = ({ session, flights }) => {
+const FlightsPage = ({ session, flights, originInit, destinationInit, departureInit }) => {
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -26,9 +26,9 @@ const FlightsPage = ({ session, flights }) => {
 
     const [flightList, setFlightList] = useState(flights);
 
-    const [origin, setOrigin] = useState();
-    const [destination, setDestination] = useState();
-    const [departure, setDeparture] = useState('');
+    const [origin, setOrigin] = useState(originInit);
+    const [destination, setDestination] = useState(destinationInit);
+    const [departure, setDeparture] = useState(departureInit);
 
     const [isLoading, setIsLoading] = useState(false);
     const [clearSearch, setClearSearch] = useState(false);
@@ -250,30 +250,41 @@ const FlightsPage = ({ session, flights }) => {
 }
 
 export const getServerSideProps = async (context) => {
-    const session = await getSession({ req: context.req });
+    const { query } = context;
 
+    let apiRoute = 'flight';
+    let originInit = '';
+    let destinationInit = '';
+    let departureInit = '';
 
-    if (!session || !session.currentUser) {
-        return {
-            redirect: {
-                destination: '/guest',
-            }
-        };
+    if (query && Object.keys(query).length > 0) {
+        console.log('query', query);
+        originInit = query.origin || null;
+        destinationInit = query.destination || null;
+        departureInit = query.departure || null;
+        const modifiedQuery = buildFlightQueryWithIds(originInit, destinationInit, departureInit);
+        apiRoute = 'flight' + modifiedQuery;
+        console.log('apiRoute', apiRoute);
     }
 
+    const session = await getSession({ req: context.req });
+    
     const client = buildClient(context);
-    const { data } = await client.get('flight');
-
+    const { data } = await client.get(apiRoute);    
     let flights = [];
 
     if (data) {
         flights = data.flights;
     }
 
+
     return {
         props: {
             session,
-            flights
+            flights,
+            originInit,
+            destinationInit,
+            departureInit,
         }
     }
 }

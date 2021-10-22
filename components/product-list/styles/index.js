@@ -9,7 +9,7 @@ export const HeadingContainer = styled.div`
 `;
 
 export const List = styled.div`
-    display: flex;
+    display: flexbox;
     flex-direction: row;
     align-items: center;
     overflow: auto;

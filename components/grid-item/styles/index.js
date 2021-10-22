@@ -16,6 +16,10 @@ export const Display = styled.div`
         margin-left: 0;
         margin-top: 0;
     } */
+
+    &:hover {
+        box-shadow: 0 3px 5px #ccc;
+    }
 `;
 
 export const Title = styled.p`

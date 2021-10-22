@@ -5,6 +5,8 @@ import { Input, Button, Image } from '../../UI';
 import { useState } from 'react';
 import { header } from '../../utility/header';
 import { useSession } from 'next-auth/client';
+import { message } from 'antd';
+import { errConfig } from '../../utility/error-config';
 
 const CheckWalletBalancePage = () => {
     const [session, loading] = useSession();
@@ -18,10 +20,15 @@ const CheckWalletBalancePage = () => {
 
         if (session && pin.length > 0) {
             setIsLoading(true);
-            const response = await axios.post('my-wallet', { pin }, header(session.jwt));
-            const { wallet } = response.data;
-            setWallet(wallet);
-            setIsLoading(false);
+            try {
+                const response = await axios.post('my-wallet', { pin }, header(session.jwt));
+                const { wallet } = response.data;
+                setWallet(wallet);
+                setIsLoading(false);
+            } catch (err) {
+                setIsLoading(false);
+                message.error(errConfig(err, 'Wallet info fetch failed!'));
+            }
         }
     }
 

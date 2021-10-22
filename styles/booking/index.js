@@ -3,12 +3,12 @@ import styled from 'styled-components/macro';
 export const Container = styled.div``;
 
 export const Wrapper = styled.div`
-    height: 400px;
+    /* height: 400px; */
     display: flex;
     flex-direction: row;
     width: 60%;
     margin: auto;
-    margin-top: 10%;
+    margin-top: 7%;
     border-radius: 5px;
     border: ${({ theme }) => `0.2px solid ${theme.secondary}`};
 `;

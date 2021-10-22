@@ -20,11 +20,12 @@ const OrderPage = ({ session }) => {
         await dispatch(deleteCart(session.jwt, id));
     }
 
-    const order = async (price) => {
+    const order = async (price, pin) => {
         try {
             await dispatch(addOrder(session.jwt, {
                 price,
                 carts: ids,
+                pin,
             }));
             message.success('Products ordered successfully!');
             dispatch(resetCart());

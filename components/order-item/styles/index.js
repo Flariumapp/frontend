@@ -10,7 +10,7 @@ export const Container = styled.div`
     padding: 10px;
     text-align: center;
     background: ${ ({ theme }) => theme.light };
-    margin: 0 5px;
+    margin: 5px;
     justify-content: space-between;
     align-items: center;
 
@@ -39,11 +39,13 @@ export const Photo = styled(Image)``;
 
 export const TitleContainer = styled.div`
     align-items: center;
+    max-width: 100px;
 `;
 
 export const Title = styled.p`
     margin: 0;
     font-size: 14px;
+    text-overflow: ellipsis;
 `;
 
 export const QuantityContainer = styled.div`

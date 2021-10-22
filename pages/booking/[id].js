@@ -6,11 +6,12 @@ import FlightCard from '../../components/flight-card';
 import { classTypes } from '../../utility/class-types';
 import { getSession } from 'next-auth/client';
 import PassengerCard from '../../components/passenger-card';
-import { addPassenger, removePassenger, addBooking } from '../../store/actions';
+import { addPassenger, removePassenger, addBooking, resetPassengers } from '../../store/actions';
 import PassengerModal from '../../components/passenger-modal';
 import buildClient from '../api/build-client';
 import { message } from 'antd';
 import { errConfig } from '../../utility/error-config';
+import WalletHolder from '../../components/wallet-holder';
 
 const BookingPage = ({ session, flight }) => {
     const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const BookingPage = ({ session, flight }) => {
 
     const [classType, setClassType] = useState();
     const [imageIndex, setImageIndex] = useState(0);
+    const [pin, setPin] = useState('');
     const [showModal, setShowModal] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -30,21 +32,32 @@ const BookingPage = ({ session, flight }) => {
         }
     }, [passengers]);
 
+    const clearBookingData = () => {
+        setClassType(null);
+        setImageIndex(0);
+        setPin('');
+        dispatch(resetPassengers());
+    }
+
     const bookFlight = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
-
-        try {
-            await dispatch(addBooking(session.jwt, {
-                classType,
-                passengers: ids,
-                flight: flight.id,
-            }));
-            message.success('Flight Booked Successfully!');
-            setIsLoading(false);
-        } catch (err) {
-            message.error(errConfig(err, 'Flight booking failed!'));
-            setIsLoading(false);
+        if (classType && pin && passengers.length > 0) {
+            setIsLoading(true);
+    
+            try {
+                await dispatch(addBooking(session.jwt, {
+                    classType,
+                    passengers: ids,
+                    flight: flight.id,
+                    pin,
+                }));
+                message.success('Flight Booked Successfully!');
+                setIsLoading(false);
+                clearBookingData();
+            } catch (err) {
+                message.error(errConfig(err, 'Flight booking failed!'));
+                setIsLoading(false);
+            }
         }
     }
 
@@ -97,7 +110,16 @@ const BookingPage = ({ session, flight }) => {
                                     placeholder="Travel Class"
                                     size='large'
                                 />
-                                <div style={{ flex: 1 }} />
+                                <div style={{ height: verticalGap }} />
+                                <WalletHolder />
+                                <div style={{ height: verticalGap }} />
+                                <Input
+                                    value={pin}
+                                    setValue={setPin}
+                                    placeholder="Enter Pin"
+                                    size="large"
+                                />
+                                <div style={{ height: verticalGap }} />
                                 <Button loading={isLoading} htmlType='submit' block size='large'>Confirm Booking</Button>
                         </InfoSection>
                     </Form>

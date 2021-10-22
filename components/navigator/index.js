@@ -12,32 +12,37 @@ const Navigator = ({ dark, currentUser }) => {
 
     const adminNavs = [
         {
-            id: 'nav1',
+            id: 'check-flights',
             name: 'Check Flights',
             path: '/flights',
         },
         {
-            id: 'nav2',
+            id: 'shops-and-utilities',
             name: 'Shops & Utilities',
             path: '/shop',
         },
         {
-            id: 'nav3',
+            id: 'food-and-resturants',
             name: 'Food & Resturants',
             path: '/resturant',
         },
         {
-            id: 'nav4',
-            name: 'Help Center',
-            path: '/help',
+            id: 'avialable-banks',
+            name: 'Available Banks',
+            path: '/bank',
         },
         {
-            id: 'nav5',
+            id: 'currency-conversion',
+            name: 'Currency Conversion',
+            path: '/currency',
+        },
+        {
+            id: 'create',
             name: 'Create',
             path: '/create',
         },
         {
-            id: 'nav6',
+            id: 'logout',
             name: 'Logout',
             path: '/logout',
         },
@@ -46,27 +51,32 @@ const Navigator = ({ dark, currentUser }) => {
 
     const authNavs = [
         {
-            id: 'nav1',
+            id: 'check-flights',
             name: 'Check Flights',
             path: '/flights',
         },
         {
-            id: 'nav2',
+            id: 'shops-and-utilities',
             name: 'Shops & Utilities',
             path: '/shop',
         },
         {
-            id: 'nav3',
+            id: 'food-and-resturants',
             name: 'Food & Resturants',
             path: '/resturant',
         },
         {
-            id: 'nav4',
-            name: 'Help Center',
-            path: '/help',
+            id: 'avialable-banks',
+            name: 'Available Banks',
+            path: '/bank',
         },
         {
-            id: 'nav5',
+            id: 'currency-conversion',
+            name: 'Currency Conversion',
+            path: '/currency',
+        },
+        {
+            id: 'logout',
             name: 'Logout',
             path: '/logout',
         },
@@ -74,17 +84,27 @@ const Navigator = ({ dark, currentUser }) => {
 
     const guestNavs = [
         {
-            id: 'nav1',
+            id: 'check-flights',
             name: 'Check Flights',
             path: '/flights',
         },
         {
-            id: 'nav2',
+            id: 'avialable-banks',
+            name: 'Available Banks',
+            path: '/bank',
+        },
+        {
+            id: 'currency-conversion',
+            name: 'Currency Conversion',
+            path: '/currency',
+        },
+        {
+            id: 'login',
             name: 'Login',
             path: '/auth',
         },
         {
-            id: 'nav3',
+            id: 'signup',
             name: 'Signup',
             path: '/auth',
         },

@@ -40,6 +40,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 passengers: [],
                 ids: [],
+                flight: null,
             }
         default:
             return state;

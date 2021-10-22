@@ -63,8 +63,12 @@ const FlightDetailPage = ({ session, flight }) => {
 
 
     const bookFlight = () => {
-        dispatch(setBookingFlight(flight));
-        router.push('/booking/' + flight.id);
+        if (session && session.currentUser) {
+            dispatch(setBookingFlight(flight));
+            router.push('/booking/' + flight.id);
+        } else {
+            router.push('/auth');
+        }
     }   
 
     return (
@@ -164,13 +168,13 @@ export const getServerSideProps = async (context) => {
 
     const session = await getSession({ req: context.req });
 
-    if (!session || !session.currentUser) {
-        return {
-            redirect: {
-                destination: '/guest',
-            }
-        };
-    }
+    // if (!session || !session.currentUser) {
+    //     return {
+    //         redirect: {
+    //             destination: '/guest',
+    //         }
+    //     };
+    // }
 
     const client = buildClient(context);
 

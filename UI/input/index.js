@@ -3,7 +3,7 @@ import { Container, Label, TextContainer, UnderlinedContainer, TextInput } from 
 
 const { TextArea } = Ipt;
 
-const Input = ({ glass = false, underlined = false, value, setValue, color, placeholder, label, labelColor, width, height, size, prefix, type = 'text', rows, maxLength = 2500 }) => {
+const Input = ({ id, glass = false, underlined = false, value, setValue, color, placeholder, label, labelColor, width, height, size, prefix, type = 'text', rows, maxLength = 2500 }) => {
     if (type === 'text-area') {
         return <TextArea
             placeholder={placeholder}
@@ -20,11 +20,14 @@ const Input = ({ glass = false, underlined = false, value, setValue, color, plac
                 <TextContainer width={width} height={height}>
                     <Label labelColor={labelColor}>{label}</Label>
                     <TextInput
+                        id={id}
                         value={value}
                         color={color}
                         placeholder={placeholder}
                         onChange={e => setValue(e.target.value)}
                         type={type}
+                        autoComplete='off'
+                        autoCorrect='off'
                     />
                 </TextContainer>
             </Container>

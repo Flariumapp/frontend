@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Text, Button } from '../../UI';
 import { Container, Row, Column } from './styles';
 import theme from '../../styles/theme';
+import WalletPinModal from '../wallet-pin-modal';
 
 const OrderCalc = ({ list = [], order }) => {
     const [isLoading, setIsLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const count = list.length;
     let price = 0;
@@ -66,10 +68,14 @@ const OrderCalc = ({ list = [], order }) => {
         }
     ];
 
-    const orderHandler = async () => {
+    const orderHandler = async (pin) => {
         setIsLoading(true);
-        await order(total);
+        await order(total, pin);
         setIsLoading(false);
+    }
+
+    const openWalletModal = () => {
+        setShowModal(true);
     }
 
     return (
@@ -90,7 +96,12 @@ const OrderCalc = ({ list = [], order }) => {
                 ))
             }
             <div style={{ flex: 1 }} />
-            <Button block size="large" onPress={orderHandler}>Order</Button>
+            <Button block size="large" loading={isLoading} onPress={openWalletModal}>Order</Button>
+            <WalletPinModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                submit={orderHandler}
+            />
         </Container>
     );
 }
