@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { message, Spin } from 'antd';
 import { DatePicker, Button, Table, Image } from '../../UI';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
 import {

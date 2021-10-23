@@ -41,6 +41,6 @@ export const ResultImage = styled(Image)`
 `;
 
 export const ResultText = styled.p`
-    color: ${ ({ theme, glass, isActive }) => isActive ? theme.light : theme.darkish };
+    color: ${ ({ theme, glass, isActive }) => glass ? (isActive ? theme.light : theme.darkish) : theme.darkish };
     margin: 0;
 `;

@@ -31,11 +31,11 @@ const Navigator = ({ dark, currentUser }) => {
             name: 'Available Banks',
             path: '/bank',
         },
-        {
-            id: 'currency-conversion',
-            name: 'Currency Conversion',
-            path: '/currency',
-        },
+        // {
+        //     id: 'currency-conversion',
+        //     name: 'Currency Conversion',
+        //     path: '/currency',
+        // },
         {
             id: 'create',
             name: 'Create',
@@ -70,11 +70,11 @@ const Navigator = ({ dark, currentUser }) => {
             name: 'Available Banks',
             path: '/bank',
         },
-        {
-            id: 'currency-conversion',
-            name: 'Currency Conversion',
-            path: '/currency',
-        },
+        // {
+        //     id: 'currency-conversion',
+        //     name: 'Currency Conversion',
+        //     path: '/currency',
+        // },
         {
             id: 'logout',
             name: 'Logout',
@@ -93,11 +93,11 @@ const Navigator = ({ dark, currentUser }) => {
             name: 'Available Banks',
             path: '/bank',
         },
-        {
-            id: 'currency-conversion',
-            name: 'Currency Conversion',
-            path: '/currency',
-        },
+        // {
+        //     id: 'currency-conversion',
+        //     name: 'Currency Conversion',
+        //     path: '/currency',
+        // },
         {
             id: 'login',
             name: 'Login',

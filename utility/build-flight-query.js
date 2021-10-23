@@ -10,12 +10,10 @@ export const buildFlightQueryWithIds = (origin, destination, departure) => {
         query += 'destination=' + destination
     }
     if (departure) {
-        const modifiedDeparture = new Date(departure).toLocaleString();
-
         if (query !== '?') {
             query += '&';
         }
-        query += 'departure=' + modifiedDeparture;
+        query += 'departure=' + departure;
     }
 
     if (query === '?') {
@@ -37,12 +35,10 @@ export const buildFlightQuery = (origin, destination, departure) => {
         query += 'destination=' + destination.id;
     }
     if (departure) {
-        const modifiedDeparture = new Date(departure).toLocaleString();
-
         if (query !== '?') {
             query += '&';
         }
-        query += 'departure=' + modifiedDeparture;
+        query += 'departure=' + departure;
     }
 
     if (query === '?') {

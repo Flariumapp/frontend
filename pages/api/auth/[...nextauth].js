@@ -83,7 +83,7 @@ export default NextAuth({
 
             session.currentUser = currentUser;
             
-            console.log('session', session);
+            // console.log('session', session);
 
             // console.log('current user data in callbacks', data);
 
