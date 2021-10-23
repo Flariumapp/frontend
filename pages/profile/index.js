@@ -116,7 +116,7 @@ const ProfilePage = ({ session, wallet, orders, bookings }) => {
                     Your Recent Items Ordered
                 </Text>
                 <div style={{ height: 20 }} />
-                <OrderList>
+                {list.length === 0 ? <Empty /> : <OrderList>
                     {
                         list.map(item => (
                             <OrderItem key={item.id}>
@@ -137,7 +137,7 @@ const ProfilePage = ({ session, wallet, orders, bookings }) => {
                             </OrderItem>
                         ))
                     }
-                </OrderList>
+                </OrderList>}
                 <div style={{ height: 50 }} />
                 <Text type='paragraph' color={theme.darkish}>
                     Your Recent Flight Bookings

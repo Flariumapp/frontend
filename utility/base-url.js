@@ -1,2 +1,6 @@
-export const baseUrl = 'http://localhost:2000/api/';
-export const apiLessBaseUrl = 'http://localhost:2000/';
+const production = true;
+
+const url = production ? 'https://flarium.herokuapp.com/' : 'http://localhost:2000/';
+
+export const baseUrl = url + 'api/';
+export const apiLessBaseUrl = url;

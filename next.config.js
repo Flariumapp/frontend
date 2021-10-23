@@ -13,7 +13,7 @@ module.exports = {
         return config;
     },
     images: {
-        domains: ['localhost'],
+        domains: ['flarium.herokuapp.com', 'localhost'],
     }
 }
 

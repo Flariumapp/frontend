@@ -1,4 +1,4 @@
-import { Container, Wrapper } from './styles';
+import { Container, Wrapper } from '../../styles/bank';
 import { getSession } from 'next-auth/client';
 import buildClient from '../api/build-client';
 import GridList from '../../components/grid-list';
