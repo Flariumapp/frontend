@@ -2,7 +2,7 @@ import { Container, Wrapper } from './styles';
 import { getSession } from 'next-auth/client';
 import buildClient from '../api/build-client';
 import GridList from '../../components/grid-list';
-import { Text } from '../../UI';
+import { Text, Empty } from '../../UI';
 import theme from '../../styles/theme';
 
 const BankPage = ({ session, banks }) => {
@@ -19,10 +19,12 @@ const BankPage = ({ session, banks }) => {
                     Avialable Banks and ATMs
                 </Text>
                 <div style={{ height: 20 }} />
+                {banks.length === 0 ?
+                <Empty /> :    
                 <GridList
                     list={list}
                     size={150}
-                />
+                />}
             </Wrapper>
         </Container>
     );
