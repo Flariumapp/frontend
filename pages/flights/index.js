@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from '../../axios-config';
 import { useRouter } from 'next/router';
 import { DatePicker, Button, Table, Image } from '../../UI';
 import { FiCalendar, FiMapPin } from 'react-icons/fi';
@@ -269,7 +270,8 @@ export const getServerSideProps = async (context) => {
     const session = await getSession({ req: context.req });
     
     const client = buildClient(context);
-    const { data } = await client.get(apiRoute);    
+    const { data } = await client.get(apiRoute);
+    
     let flights = [];
 
     if (data) {

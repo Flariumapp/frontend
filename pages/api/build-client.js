@@ -5,12 +5,12 @@ const buildClient = ({ req }) => {
     if(typeof window === 'undefined') {
         return axios.create({
             baseURL: baseUrl,
-            headers: req.headers,
+            // headers: req.headers,
         });
     } else {
         return axios.create({
             baseURL: baseUrl,
-            headers: req.headers,
+            // headers: req.headers,
         });
     }
 }

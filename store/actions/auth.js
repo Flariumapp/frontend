@@ -34,6 +34,8 @@ export const signup = (signupData) => {
         try {
             const response = await axios.post('auth/signup', signupData);
 
+            console.log('signup response data', response.data);
+
             const { token } = response.data;
 
             // const expiryDateModified = new Date(expiryDate).getTime() - new Date().getTime();

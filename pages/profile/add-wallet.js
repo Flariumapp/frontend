@@ -27,6 +27,11 @@ const AddWalletPage = ({ session }) => {
     const addWalletHandler = async (e) => {
         e.preventDefault();
 
+        if (amount && amount > 1000) {
+            message.warning('Added amount should not be more than Rs.1000');
+            return;
+        }
+
         if (pin && confirmPin && pin === confirmPin) {
             setIsLoading(true);
             try {

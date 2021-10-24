@@ -58,6 +58,7 @@ export default NextAuth({
         Providers.Credentials({
             authorize: async ({ email, password }) => {
                 const { data } = await axios.post('auth/login', { email, password });
+
                 return {
                     jwt: data.token,
                     currentUser: data.user,
