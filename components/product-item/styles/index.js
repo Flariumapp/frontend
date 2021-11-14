@@ -6,6 +6,7 @@ export const Container = styled.div`
     overflow: hidden;
     margin-bottom: 10px;
     margin-right: 30px;
+    width: ${ ({ size }) => size + 'px' };
 
     &:hover {
         box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
@@ -28,8 +29,12 @@ export const Row = styled.div`
 
 export const Name = styled.p`
     margin: 0;
+    max-width: 150px;
     font-size: 18px;
     font-weight: 400;
+    text-overflow: ellipsis; 
+    white-space: nowrap;
+    overflow: hidden;
 `;
 
 export const Price = styled.p`

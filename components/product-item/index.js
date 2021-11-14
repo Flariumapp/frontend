@@ -25,7 +25,7 @@ const ProductItem = ({ item, size = 220, addItem, deleteItem }) => {
     }
 
     return (
-        <Container>
+        <Container size={size}>
             <Display size={size}>
                 <Image
                     src={galleryUrl(gallery[0])}
@@ -41,7 +41,7 @@ const ProductItem = ({ item, size = 220, addItem, deleteItem }) => {
                     {category === 'food' && <VegBox veg={meta.veg} size={20} />}
                 </Row>
                 <div style={{ height: 10 }} />
-                <Price>Rs {price} / plate</Price>
+                <Price>Rs {price} {category === 'food' && "/ plate"}</Price>
                 <div style={{ height: 10 }} />
                 <Button onPress={cartClickHandler} block danger={carted}>
                     {carted ? 'Cancel' : 'Add To Cart'}
